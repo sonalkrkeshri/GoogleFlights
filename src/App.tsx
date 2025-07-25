@@ -7,6 +7,7 @@
 
 import { StyleSheet, View } from 'react-native';
 import Header from './components/Header';
+import TopComponent from './components/TopComponent';
 
 function App() {
 
@@ -14,6 +15,7 @@ function App() {
     <View style={styles.container}>
       <Header />
       <View style={{flex:1}}>
+        <TopComponent />
         {/* //body */}
       </View>
     </View>
