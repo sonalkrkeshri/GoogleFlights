@@ -74,6 +74,7 @@ const styles = StyleSheet.create({
     container: {
         borderBottomColor: 'blue',
         borderBottomWidth: 1,
+        marginHorizontal: 4,
     },
     subContainer: {
         paddingHorizontal: 8,

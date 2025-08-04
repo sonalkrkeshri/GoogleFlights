@@ -7,6 +7,7 @@ import arrow from './images/arrow.png';
 import rightArrow from './images/rightArrow.png';
 import dotArrow from './images/dotArrow.png';
 import dropDown from './images/dropdown.png';
+import userCount from './images/userCount.png';
 
 export {
     googleImg,
@@ -16,4 +17,5 @@ export {
     rightArrow,
     dotArrow,
     dropDown,
+    userCount,
 };
