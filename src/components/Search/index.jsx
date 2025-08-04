@@ -1,6 +1,6 @@
 import {useState, useEffect} from 'react';
-import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
-import CustomPicker from '../CustomPicker';
+import {View, StyleSheet} from 'react-native';
+import CustomPickerTrip from '../CustomPickerTrip';
 import { arrow, dotArrow, rightArrow } from '../../../assets';
 
 const Search = () => {
@@ -24,10 +24,18 @@ const Search = () => {
         setTripType(trip);
     }, []);
 
+    const onSelection = (index) => {
+        setSelectedIndex(index);
+    }
+
     return(
         <View style={styles.container}>
             <View style={styles.typeView}>
-                <CustomPicker selectedIndex={selectedIndex} options={tripType}/>
+                <CustomPickerTrip 
+                    selectedIndex={selectedIndex} 
+                    options={tripType} 
+                    onSelection={onSelection}
+                />
             </View>
         </View>
     );
@@ -36,7 +44,6 @@ const Search = () => {
 const styles = StyleSheet.create({
     container: {
         height: 300,
-        justifyContent: 'center',
         backgroundColor: 'white',
         paddingBottom: 10,
         elevation: 5,
