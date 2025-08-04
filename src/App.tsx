@@ -7,7 +7,8 @@
 
 import { StyleSheet, View } from 'react-native';
 import Header from './components/Header';
-import TopComponent from './components/TopComponent';
+import Top from './components/Top';
+import Search from './components/Search';
 
 function App() {
 
@@ -15,7 +16,8 @@ function App() {
     <View style={styles.container}>
       <Header />
       <View style={{flex:1}}>
-        <TopComponent />
+        <Top />
+        <Search />
         {/* //body */}
       </View>
     </View>
