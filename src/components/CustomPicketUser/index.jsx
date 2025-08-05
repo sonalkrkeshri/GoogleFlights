@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
-import {View, Text, TouchableOpacity, StyleSheet, Image} from 'react-native';
-import { dropDown, userCount } from '../../../assets';
+import {View, Text, TouchableOpacity, StyleSheet, Image, FlatList} from 'react-native';
+import { dropDown, minus, plus, userCount } from '../../../assets';
 
 const CustomPickerUser = (props) => {
     const [users, setUsers] = useState([]);
@@ -18,10 +18,62 @@ const CustomPickerUser = (props) => {
         setTotalCount(0);
     }, []);
 
+    useEffect(() => {
+        let total = 0;
+        users.map(item => {
+            total = total+item.count;
+        });
+        setTotalCount(total);
+    }, [users]);
+
     const onPress = () => {
         const newVal = !isClicked;
         setIsClicked(newVal);
     }
+
+    const onChangeValue = (id, c) => {
+        const newV = users.map((item, i)=>{
+            if(i===id){
+                return {
+                    ...item, count: c, 
+                }
+            }
+            return {
+                ...item,
+            }
+        });
+        setUsers(newV);
+    }
+
+    const renderItem = ({item, index}) => {
+        let c = item?.count
+        const onReduce = () => {
+            c = c>0? c-1: c;
+            onChangeValue(index, c);
+        }
+        const onIncrease = () => {
+            c = c<5? c+1: c;
+            onChangeValue(index, c);
+        }
+        
+        return (
+            <View key={index} style={styles.itemView}>
+                <View>
+                    <Text style={styles.head}>{item?.user}</Text>
+                    {item?.sub && <Text style={styles.subHead}>{item.sub}</Text>}
+                </View>
+                <View style={styles.actionView}>
+                    <TouchableOpacity onPress={onReduce}>
+                        <Image style={styles.iconStyle} source={minus}/>
+                    </TouchableOpacity>
+                    <Text>{c}</Text>
+                    <TouchableOpacity onPress={onIncrease}>
+                        <Image style={styles.iconStyle} source={plus} />
+                    </TouchableOpacity>
+                </View>
+            </View>
+        );
+    };
 
     return (
         <View>
@@ -30,6 +82,16 @@ const CustomPickerUser = (props) => {
                 <Text>{totalCount}</Text>
                 <Image source={dropDown} style={styles.drop}/>
             </TouchableOpacity>
+            {
+                isClicked && 
+                <View style={styles.dropDownView}>
+                    <FlatList 
+                        data={users}
+                        renderItem={renderItem}
+                        keyExtractor={(item, index) => `${index}`}
+                    />
+                </View>
+            }
         </View>
     );
 
@@ -57,6 +119,38 @@ const styles = StyleSheet.create({
         height: 20,
         marginHorizontal: 6,
     }, 
+    dropDownView: {
+        position: 'absolute',
+        width: 140,
+        top: 30,
+        left:4,
+        paddingHorizontal: 4,
+        backgroundColor: 'white',
+        elevation: 2,
+    },
+    head: {
+        fontSize: 16,
+        color: 'black',
+    },
+    subHead: {
+        fontSize: 12,
+        color: 'black',
+    },
+    itemView: {
+        paddingVertical: 4,
+        flexDirection: 'row',
+        justifyContent: 'space-between'
+    },
+    actionView: {
+        flexDirection: 'row',
+        alignSelf: 'center',
+        textAlign: 'right',
+    },
+    iconStyle: {
+        height: 20,
+        width: 20,
+        marginHorizontal: 4,
+    }
 });
 
 export default CustomPickerUser;

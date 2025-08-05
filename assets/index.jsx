@@ -8,6 +8,8 @@ import rightArrow from './images/rightArrow.png';
 import dotArrow from './images/dotArrow.png';
 import dropDown from './images/dropdown.png';
 import userCount from './images/userCount.png';
+import plus from './images/plus.png';
+import minus from './images/minus.png';
 
 export {
     googleImg,
@@ -18,4 +20,6 @@ export {
     dotArrow,
     dropDown,
     userCount,
+    plus,
+    minus,
 };
