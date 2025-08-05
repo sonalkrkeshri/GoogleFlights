@@ -2,6 +2,7 @@ import {useState, useEffect} from 'react';
 import {View, StyleSheet} from 'react-native';
 import CustomPickerTrip from '../CustomPickerTrip';
 import { arrow, dotArrow, rightArrow } from '../../../assets';
+import CustomPickerUser from '../CustomPicketUser';
 
 const Search = () => {
     const [tripType, setTripType] = useState([]);
@@ -36,6 +37,7 @@ const Search = () => {
                     options={tripType} 
                     onSelection={onSelection}
                 />
+                <CustomPickerUser />
             </View>
         </View>
     );
@@ -51,6 +53,7 @@ const styles = StyleSheet.create({
         borderBottomStartRadius: 20,
     },
     typeView: {
+        flexDirection: 'row',
         justifyContent: 'center',
         alignContent: 'center',
     },
