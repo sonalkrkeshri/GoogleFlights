@@ -18,17 +18,22 @@ const CustomPickerUser = (props) => {
         setTotalCount(0);
     }, []);
 
-    useEffect(() => {
+    // useEffect(() => {
+    //     
+    // }, [users]);
+
+    const onPress = () => {
+        const newVal = !isClicked;
+        setIsClicked(newVal);
+    }
+
+    const onSubmit = () => {
         let total = 0;
         users.map(item => {
             total = total+item.count;
         });
         setTotalCount(total);
-    }, [users]);
-
-    const onPress = () => {
-        const newVal = !isClicked;
-        setIsClicked(newVal);
+        onPress();
     }
 
     const onChangeValue = (id, c) => {
@@ -90,6 +95,14 @@ const CustomPickerUser = (props) => {
                         renderItem={renderItem}
                         keyExtractor={(item, index) => `${index}`}
                     />
+                    <View style={styles.actionView}>
+                        <TouchableOpacity style={styles.submitView} onPress={onPress}>
+                            <Text style={styles.submit}>Cancel</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles.submitView} onPress={onSubmit}>
+                            <Text style={styles.submit}>Done</Text>
+                        </TouchableOpacity>
+                    </View>
                 </View>
             }
         </View>
@@ -150,7 +163,15 @@ const styles = StyleSheet.create({
         height: 20,
         width: 20,
         marginHorizontal: 4,
-    }
+    },
+    submitView: {
+        marginHorizontal: 4,
+        marginVertical: 4,
+    },
+    submit: {
+        color: 'blue',
+        fontWeight: 'bold',
+    },
 });
 
 export default CustomPickerUser;
