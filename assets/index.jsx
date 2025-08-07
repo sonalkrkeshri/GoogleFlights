@@ -10,6 +10,7 @@ import dropDown from './images/dropdown.png';
 import userCount from './images/userCount.png';
 import plus from './images/plus.png';
 import minus from './images/minus.png';
+import check from './images/check.png';
 
 export {
     googleImg,
@@ -22,4 +23,5 @@ export {
     userCount,
     plus,
     minus,
+    check,
 };

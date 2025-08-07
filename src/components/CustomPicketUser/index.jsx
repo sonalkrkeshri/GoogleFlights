@@ -4,6 +4,7 @@ import { dropDown, minus, plus, userCount } from '../../../assets';
 
 const CustomPickerUser = (props) => {
     const [users, setUsers] = useState([]);
+    const [finalU, setFinalU] = useState([]);
     const [isClicked, setIsClicked] = useState(false);
     const [totalCount, setTotalCount] = useState(0);
     useEffect(() => {
@@ -14,21 +15,29 @@ const CustomPickerUser = (props) => {
             {user: 'Infants', sub: 'On Lap', count: 0},
         ];
         setUsers(u);
+        setFinalU(u);
         setIsClicked(false);
         setTotalCount(0);
     }, []);
 
-    useEffect(() => {
+    const onPress = () => {
+        const newVal = !isClicked;
+        setIsClicked(newVal);
+    }
+
+    const onCancel = () => {
+        setUsers(finalU);
+        onPress();
+    }
+
+    const onSubmit = () => {
         let total = 0;
         users.map(item => {
             total = total+item.count;
         });
         setTotalCount(total);
-    }, [users]);
-
-    const onPress = () => {
-        const newVal = !isClicked;
-        setIsClicked(newVal);
+        setFinalU(users);
+        onPress();
     }
 
     const onChangeValue = (id, c) => {
@@ -90,6 +99,14 @@ const CustomPickerUser = (props) => {
                         renderItem={renderItem}
                         keyExtractor={(item, index) => `${index}`}
                     />
+                    <View style={styles.actionView}>
+                        <TouchableOpacity style={styles.submitView} onPress={onCancel}>
+                            <Text style={styles.submit}>Cancel</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles.submitView} onPress={onSubmit}>
+                            <Text style={styles.submit}>Done</Text>
+                        </TouchableOpacity>
+                    </View>
                 </View>
             }
         </View>
@@ -150,7 +167,15 @@ const styles = StyleSheet.create({
         height: 20,
         width: 20,
         marginHorizontal: 4,
-    }
+    },
+    submitView: {
+        marginHorizontal: 4,
+        marginVertical: 4,
+    },
+    submit: {
+        color: 'blue',
+        fontWeight: 'bold',
+    },
 });
 
 export default CustomPickerUser;

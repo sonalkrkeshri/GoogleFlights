@@ -1,15 +1,17 @@
 import {useEffect, useState} from 'react';
 import {View, Text, Image, StyleSheet, TouchableOpacity, FlatList} from 'react-native';
-import { dropDown } from '../../../assets';
+import { dropDown, arrow, dotArrow, rightArrow } from '../../../assets';
+
 
 const CustomPickerTrip = (props) => {
-    const { selectedIndex, options, onSelection} = props;
+    const { selectedIndex, onSelection} = props;
     const [selected, setSelected] = useState("");
     const [preImg, setPreImg] = useState(null);
     const [isClicked, setIsClicked] = useState(false);
+    const [tripType, setTripType] = useState([]);
 
     useEffect(() => {
-        const sel = options[selectedIndex];
+        const sel = tripType[selectedIndex];
         if(sel){
             const {value, img} = sel;
             setSelected(value);
@@ -18,6 +20,22 @@ const CustomPickerTrip = (props) => {
     }, [selectedIndex]);
     
     useEffect(() => {
+        const trip = [
+            {
+                value: 'One Way',
+                img: rightArrow,
+            },
+            {
+                value: 'Round Trip',
+                img: arrow,
+            },
+            {
+                value: 'Multi-City',
+                img: dotArrow,
+            },
+        ];
+        setTripType(trip);
+        setSelected(trip[0].value);
         setIsClicked(false);
     }, []);
 
@@ -60,7 +78,7 @@ const CustomPickerTrip = (props) => {
             {
                 isClicked && 
                 <FlatList 
-                    data={options}
+                    data={tripType}
                     renderItem={renderItem}
                     keyExtractor={(item, index)=> `${index}`}
                     style={styles.dropDownView}
@@ -75,6 +93,7 @@ const styles = StyleSheet.create({
         borderBottomColor: 'blue',
         borderBottomWidth: 1,
         marginHorizontal: 4,
+        width: 130,
     },
     subContainer: {
         paddingHorizontal: 8,
