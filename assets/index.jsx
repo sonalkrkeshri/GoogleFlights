@@ -11,6 +11,11 @@ import userCount from './images/userCount.png';
 import plus from './images/plus.png';
 import minus from './images/minus.png';
 import check from './images/check.png';
+import exchange from './images/exchange.png';
+import circle from './images/circle.png';
+import location from './images/location.png';
+import calendar from './images/calendar.png';
+
 
 export {
     googleImg,
@@ -24,4 +29,8 @@ export {
     plus,
     minus,
     check,
+    exchange,
+    location,
+    circle,
+    calendar,
 };

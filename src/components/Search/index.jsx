@@ -3,6 +3,7 @@ import {View, StyleSheet} from 'react-native';
 import CustomPickerTrip from '../CustomPickerTrip';
 import CustomPickerUser from '../CustomPicketUser';
 import CustomPickerType from '../CustomPickerType';
+import Location from '../Location';
 
 const Search = () => {
     const [selectedIndex, setSelectedIndex] = useState(0);
@@ -20,6 +21,9 @@ const Search = () => {
                 />
                 <CustomPickerUser />
                 <CustomPickerType />
+            </View>
+            <View>
+                <Location />
             </View>
         </View>
     );
