@@ -4,6 +4,7 @@ import { dropDown, minus, plus, userCount } from '../../../assets';
 
 const CustomPickerUser = (props) => {
     const [users, setUsers] = useState([]);
+    const [finalU, setFinalU] = useState([]);
     const [isClicked, setIsClicked] = useState(false);
     const [totalCount, setTotalCount] = useState(0);
     useEffect(() => {
@@ -14,17 +15,19 @@ const CustomPickerUser = (props) => {
             {user: 'Infants', sub: 'On Lap', count: 0},
         ];
         setUsers(u);
+        setFinalU(u);
         setIsClicked(false);
         setTotalCount(0);
     }, []);
 
-    // useEffect(() => {
-    //     
-    // }, [users]);
-
     const onPress = () => {
         const newVal = !isClicked;
         setIsClicked(newVal);
+    }
+
+    const onCancel = () => {
+        setUsers(finalU);
+        onPress();
     }
 
     const onSubmit = () => {
@@ -33,6 +36,7 @@ const CustomPickerUser = (props) => {
             total = total+item.count;
         });
         setTotalCount(total);
+        setFinalU(users);
         onPress();
     }
 
@@ -96,7 +100,7 @@ const CustomPickerUser = (props) => {
                         keyExtractor={(item, index) => `${index}`}
                     />
                     <View style={styles.actionView}>
-                        <TouchableOpacity style={styles.submitView} onPress={onPress}>
+                        <TouchableOpacity style={styles.submitView} onPress={onCancel}>
                             <Text style={styles.submit}>Cancel</Text>
                         </TouchableOpacity>
                         <TouchableOpacity style={styles.submitView} onPress={onSubmit}>

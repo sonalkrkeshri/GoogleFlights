@@ -1,29 +1,11 @@
-import {useState, useEffect} from 'react';
+import {useState} from 'react';
 import {View, StyleSheet} from 'react-native';
 import CustomPickerTrip from '../CustomPickerTrip';
-import { arrow, dotArrow, rightArrow } from '../../../assets';
 import CustomPickerUser from '../CustomPicketUser';
+import CustomPickerType from '../CustomPickerType';
 
 const Search = () => {
-    const [tripType, setTripType] = useState([]);
     const [selectedIndex, setSelectedIndex] = useState(0);
-    useEffect(() => {
-        const trip = [
-            {
-                value: 'One Way',
-                img: rightArrow,
-            },
-            {
-                value: 'Round Trip',
-                img: arrow,
-            },
-            {
-                value: 'Multi-City',
-                img: dotArrow,
-            },
-        ];
-        setTripType(trip);
-    }, []);
 
     const onSelection = (index) => {
         setSelectedIndex(index);
@@ -34,10 +16,10 @@ const Search = () => {
             <View style={styles.typeView}>
                 <CustomPickerTrip 
                     selectedIndex={selectedIndex} 
-                    options={tripType} 
                     onSelection={onSelection}
                 />
                 <CustomPickerUser />
+                <CustomPickerType />
             </View>
         </View>
     );
