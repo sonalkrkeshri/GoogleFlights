@@ -15,7 +15,7 @@ const CustomPickerTrip = (props) => {
         if(sel){
             const {value, img} = sel;
             setSelected(value);
-            img !== (null || undefined)? setPreImg(img): setPreImg(null);
+            setPreImg(img)
         }
     }, [selectedIndex]);
     
@@ -36,6 +36,7 @@ const CustomPickerTrip = (props) => {
         ];
         setTripType(trip);
         setSelected(trip[0].value);
+        setPreImg(trip[0].img);
         setIsClicked(false);
     }, []);
 
@@ -60,7 +61,7 @@ const CustomPickerTrip = (props) => {
     }
 
     const ItemComponent = (props) => {
-        const {preImg, selected, dropDown} = props;
+        const {preImg, selected} = props;
         return (
             <View style={styles.subContainer}>
                 {preImg && <Image style={styles.preImg} source={preImg}/>}
@@ -73,7 +74,7 @@ const CustomPickerTrip = (props) => {
     return (
         <View>
             <TouchableOpacity style={styles.container} onPress={onPress}>
-                <ItemComponent preImg={preImg} selected={selected} dropDown={dropDown} />
+                <ItemComponent preImg={preImg} selected={selected} />
             </TouchableOpacity>
             {
                 isClicked && 
