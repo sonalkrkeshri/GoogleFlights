@@ -4,6 +4,7 @@ import CustomPickerTrip from '../CustomPickerTrip';
 import CustomPickerUser from '../CustomPicketUser';
 import CustomPickerType from '../CustomPickerType';
 import Location from '../Location';
+import Schedule from '../Schedule';
 
 const Search = () => {
     const [selectedIndex, setSelectedIndex] = useState(0);
@@ -24,6 +25,7 @@ const Search = () => {
             </View>
             <View>
                 <Location />
+                <Schedule />
             </View>
         </View>
     );

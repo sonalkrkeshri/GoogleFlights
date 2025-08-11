@@ -26,14 +26,14 @@ const styles=StyleSheet.create({
         fontSize: 16,
     },
     inputView: {
-        width: '47%',
+        width: '48%',
         borderColor: 'grey',
         borderWidth: 1,
         borderRadius: 10,
         marginHorizontal: 5,
         flexDirection: 'row',
         alignItems: 'center',
-        paddingLeft: 15,
+        paddingLeft: 10,
     },
 });
 
