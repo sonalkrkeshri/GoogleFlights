@@ -69,7 +69,7 @@ const CustomPickerUser = (props) => {
             <View key={index} style={styles.itemView}>
                 <View>
                     <Text style={styles.head}>{item?.user}</Text>
-                    {item?.sub && <Text style={styles.subHead}>{item.sub}</Text>}
+                    <Text style={styles.subHead}>{''+item.sub}</Text>
                 </View>
                 <View style={styles.actionView}>
                     <TouchableOpacity onPress={onReduce}>
@@ -144,6 +144,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 4,
         backgroundColor: 'white',
         elevation: 2,
+        zIndex: 2,
     },
     head: {
         fontSize: 16,
@@ -169,7 +170,7 @@ const styles = StyleSheet.create({
         marginHorizontal: 4,
     },
     submitView: {
-        marginHorizontal: 4,
+        marginHorizontal: 10,
         marginVertical: 4,
     },
     submit: {
