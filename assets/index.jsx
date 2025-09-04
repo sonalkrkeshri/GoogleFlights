@@ -15,6 +15,7 @@ import exchange from './images/exchange.png';
 import circle from './images/circle.png';
 import location from './images/location.png';
 import calendar from './images/calendar.png';
+import cross from './images/cross.png';
 
 
 export {
@@ -33,4 +34,5 @@ export {
     location,
     circle,
     calendar,
+    cross,
 };
