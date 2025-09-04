@@ -8,10 +8,12 @@ const Schedule = () => {
     const [selectedIndex, setSelectedIndex] = useState(0);
     const [selectedDate, setSelectedDate] = useState([]);
     const [visible, setVisible] = useState(false);
+    const [minDate, setMinDate] = useState();
+    const dateNow = new Date().toDateString();
     useEffect(() => {
-        const dateNow = new Date().toDateString();
         const defaultDate = [dateNow, dateNow];
         setSelectedDate(defaultDate);
+        setMinDate(dateNow);
     }, []);
 
     const onChangeDate = (newDate) => {
@@ -19,7 +21,9 @@ const Schedule = () => {
         const newSelectedDate = [...selectedDate];
         if(selectedIndex === 0) {
             newSelectedDate[0] = newValue;
-            newSelectedDate[1] = newValue;
+            if(Date.parse(newValue) > Date.parse(newSelectedDate[1])){
+                newSelectedDate[1] = newValue;
+            }
 
         } else {
             newSelectedDate[selectedIndex] = newValue;
@@ -32,6 +36,11 @@ const Schedule = () => {
     const onOpen = (key) => {
         setVisible(true);
         setSelectedIndex(key);
+        if(key===0){
+            setMinDate(dateNow);
+        } else {
+            setMinDate(selectedDate[0]);
+        }
     }
 
     const onClose = () => {
@@ -55,7 +64,7 @@ const Schedule = () => {
                         <Image source={cross} style={styles.imgStyle}/>
                     </TouchableOpacity>
                 </View>
-                <Calendar style={styles.calendarView} onDayPress={onChangeDate} current={selectedDate[selectedIndex]} minDate={selectedDate[0]}/>
+                <Calendar style={styles.calendarView} onDayPress={onChangeDate} current={selectedDate[selectedIndex]} minDate={minDate}/>
                 <View style={styles.outView}></View>
             </Modal>
         </View>
