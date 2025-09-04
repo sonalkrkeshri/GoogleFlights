@@ -83,9 +83,11 @@ const styles = StyleSheet.create({
         paddingHorizontal: 2,
         backgroundColor: 'white',
         elevation: 2,
+        zIndex: 2,
     },
     itemView: {
         flexDirection: 'row',
+        paddingVertical: 4,
     },
     imgCheck: {
         height: 20,
