@@ -1,28 +1,63 @@
 import React, {useState, useEffect} from 'react';
-import {StyleSheet, View} from 'react-native';
-import CustomInput from '../CustomInput';
-import { calendar } from '../../../assets';
+import {Modal, StyleSheet, TouchableOpacity, View, Image} from 'react-native';
+import { calendar, cross } from '../../../assets';
+import CustomDate from '../CustomDate';
+import { Calendar } from 'react-native-calendars';
 
 const Schedule = () => {
-    const [date1, setDate1] = useState();
-    const [date2, setDate2] = useState();
+    const [selectedIndex, setSelectedIndex] = useState(0);
+    const [selectedDate, setSelectedDate] = useState([]);
+    const [visible, setVisible] = useState(false);
     useEffect(() => {
         const dateNow = new Date().toDateString();
-        setDate1(dateNow);
-        setDate2(dateNow);
+        const defaultDate = [dateNow, dateNow];
+        setSelectedDate(defaultDate);
     }, []);
-    const onChangeDate1 = () => {
 
+    const onChangeDate = (newDate) => {
+        const newValue = new Date(newDate.dateString).toDateString();
+        const newSelectedDate = [...selectedDate];
+        if(selectedIndex === 0) {
+            newSelectedDate[0] = newValue;
+            newSelectedDate[1] = newValue;
+
+        } else {
+            newSelectedDate[selectedIndex] = newValue;
+        }
+        setSelectedDate(newSelectedDate);
+        setVisible(false);
     }
     
-    const onChangeDate2 = () => {
 
+    const onOpen = (key) => {
+        setVisible(true);
+        setSelectedIndex(key);
+    }
+
+    const onClose = () => {
+        setVisible(false);
     }
 
     return(
-        <View style={styles.container}>
-            <CustomInput icon={calendar} placeholder={date1} onChange={onChangeDate1} value={date1}/>
-            <CustomInput icon={calendar} placeholder={date2} onChange={onChangeDate2} value={date2}/>
+        <View>
+            <View style={styles.container}>
+                <CustomDate icon={calendar} date={selectedDate[0]} onPress={onOpen} index={0}/>
+                <CustomDate icon={calendar} date={selectedDate[1]} onPress={onOpen} index={1}/>
+            </View>
+            <Modal 
+                visible={visible} 
+                style={styles.modalView}
+                transparent={true}
+
+            >
+                <View style={styles.outView}>
+                    <TouchableOpacity style={styles.closeView} onPress={onClose}>
+                        <Image source={cross} style={styles.imgStyle}/>
+                    </TouchableOpacity>
+                </View>
+                <Calendar style={styles.calendarView} onDayPress={onChangeDate} current={selectedDate[selectedIndex]} minDate={selectedDate[0]}/>
+                <View style={styles.outView}></View>
+            </Modal>
         </View>
     );
 };
@@ -34,6 +69,28 @@ const styles = StyleSheet.create({
         marginHorizontal: 8,
         justifyContent: 'center',
         alignItems: 'center',
+    },
+    outView: {
+        flex:1,
+        backgroundColor: 'rgba(0,0,0,0.5)',
+        justifyContent: 'flex-end',
+    },
+    calendarView: {
+        backgroundColor: 'white',
+        borderWidth: 1,
+        borderColor: 'black',
+        margin: 4,
+        padding: 14,
+    },
+     imgStyle: {
+        width: 50,
+        height: 50,
+    },
+    closeView: {
+        backgroundColor: 'white',
+        alignSelf: 'center',
+        margin:10,
+        borderRadius: 40,
     },
 });
 
