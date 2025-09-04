@@ -16,7 +16,7 @@ import circle from './images/circle.png';
 import location from './images/location.png';
 import calendar from './images/calendar.png';
 import cross from './images/cross.png';
-
+import search from './images/search.png';
 
 export {
     googleImg,
@@ -35,4 +35,5 @@ export {
     circle,
     calendar,
     cross,
+    search
 };

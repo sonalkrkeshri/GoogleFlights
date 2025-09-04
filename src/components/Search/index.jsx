@@ -5,6 +5,7 @@ import CustomPickerUser from '../CustomPicketUser';
 import CustomPickerType from '../CustomPickerType';
 import Location from '../Location';
 import Schedule from '../Schedule';
+import Explore from '../Explore';
 
 const Search = () => {
     const [selectedIndex, setSelectedIndex] = useState(0);
@@ -27,13 +28,15 @@ const Search = () => {
                 <Location />
                 <Schedule />
             </View>
+            <View style={styles.exploreView}>
+                <Explore />
+            </View>
         </View>
     );
 };
 
 const styles = StyleSheet.create({
     container: {
-        height: 300,
         backgroundColor: 'white',
         paddingBottom: 10,
         elevation: 5,
@@ -45,6 +48,10 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignContent: 'center',
     },
+    exploreView: {
+        height: 20,
+        bottom: -10,
+    }
 });
 
 export default Search;
