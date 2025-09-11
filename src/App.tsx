@@ -5,29 +5,15 @@
  * @format
  */
 
-import { StyleSheet, View } from 'react-native';
-import Header from './components/Header';
-import Top from './components/Top';
-import Search from './components/Search';
+import Navigation from "./navigation";
+
 
 function App() {
 
   return (
-    <View style={styles.container}>
-      <Header />
-      <View style={{flex:1}}>
-        <Top />
-        <Search />
-        {/* //body */}
-      </View>
-    </View>
+   <Navigation />
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});
 
 export default App;

@@ -1,13 +1,18 @@
-import {useEffect, useState} from 'react';
-import {View, Text, Image, StyleSheet} from 'react-native';
+import {View, Image, StyleSheet, TouchableOpacity} from 'react-native';
 import { googleImg, userImg } from '../../../assets';
+import { useNavigation } from '@react-navigation/native';
 
 const Header = () => {
-
+    const navigation = useNavigation();
+    const onPress= () => {
+        navigation.navigate('Profile');
+    }
     return (
         <View style={styles.container}>
             <Image source={googleImg} style={styles.googleImage} />
-            <Image source={userImg} style={styles.userImages}/>
+            <TouchableOpacity onPress={onPress}>
+                <Image source={userImg} style={styles.userImages}/>
+            </TouchableOpacity>
         </View>
     );
 }
