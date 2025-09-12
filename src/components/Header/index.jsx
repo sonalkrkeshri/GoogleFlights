@@ -10,8 +10,8 @@ const Header = () => {
     return (
         <View style={styles.container}>
             <Image source={googleImg} style={styles.googleImage} />
-            <TouchableOpacity onPress={onPress}>
-                <Image source={userImg} style={styles.userImages}/>
+            <TouchableOpacity onPress={onPress} style={styles.imgView}>
+                <Image source={userImg} style={styles.userImages} />
             </TouchableOpacity>
         </View>
     );
@@ -33,12 +33,15 @@ const styles = StyleSheet.create({
         height: 40,
         resizeMode: 'cover',
     },
-    userImages: {
-        height: 40,
-        width: 40,
+    imgView: {
+        padding:4,
         borderRadius: 20,
-        borderColor: 'grey',
         borderWidth:1,
+        borderColor: 'grey',
+    },
+    userImages: {
+        height: 30,
+        width: 30,
     },
 });
 
