@@ -1,8 +1,27 @@
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {createNativeStackNavigator } from '@react-navigation/native-stack';
 import {createStaticNavigation} from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+
 import HomeScreen from '../screens/HomeScreen';
 import ProfileScreen from '../screens/ProfileScreen';
+import RegisterScreen from '../screens/ProfileScreen/RegisterScreen';
 
+const ProfileNav = createStackNavigator({
+    screens: {
+        Login: {
+            screen: ProfileScreen,
+            options: {
+                title: 'Profile'
+            }
+        },
+        Register: {
+            screen: RegisterScreen,
+            options: {
+                title: 'Register'
+            }
+        }
+    }
+});
 
 const Stack = createNativeStackNavigator({
     screens: {
@@ -13,9 +32,9 @@ const Stack = createNativeStackNavigator({
             }
         },
         Profile: {
-            screen: ProfileScreen,
+            screen: ProfileNav,
             options: {
-                title: 'Profile'
+                headerShown: false,
             }
         }
     }
